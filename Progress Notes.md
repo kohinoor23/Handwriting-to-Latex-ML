@@ -6,7 +6,9 @@ What we need to do, an implementation level analysis
 4. Test and calculate BLEU score.
 Note: A piece of work on img-2-latex. What a clarity..[blogpost](https://guillaumegenthial.github.io/sequence-to-sequence.html)
 
-## Competitive Part Ideas:
+## Changes yet in comp.ipynb
+1. 
+## Competitive Part Ideas
 1. Bi Directional LSTM
 2. Use RNN for decoder, seqToseq (image column wise) - generates a sequence which is the context
 3. 
