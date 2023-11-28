@@ -51,29 +51,48 @@ class BLEU(object):
             return math.exp(1 - r / c)
         
 
+if __name__ == '__main__':
+    scorer = BLEU()
+    grount_truths = ["$ \sin ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 $",
+                     "$ \sum _ { { T \geq g } } { 8 . 2 } $",
+                     "$ r = r ( \theta ) $"]
 
+
+    # the predictions must be in the same format where each symbol is followed by a space
+    predictions = ["$ \cos ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 } } } $  ",
+                   "$ \sum _ { { T \leq g } } { 0 . 2 } $",
+                   "$ x = R ( \theta ) $"]
+
+
+    overall = 0
+    for gt, pred in zip(grount_truths, predictions):
+        gt = gt.split()
+        pred = pred.split()
+        overall += BLEU.compute(pred,[gt], weights=[1/4, 1/4, 1/4, 1/4])
+
+    print("Macro Bleu : ", overall/len(predictions))
 # In[2]:
 
 
-scorer = BLEU()
-grount_truths = ["$ \sin ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 $",
-                 "$ \sum _ { { T \geq g } } { 8 . 2 } $",
-                 "$ r = r ( \theta ) $"]
+# scorer = BLEU()
+# grount_truths = ["$ \sin ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 $",
+#                  "$ \sum _ { { T \geq g } } { 8 . 2 } $",
+#                  "$ r = r ( \theta ) $"]
 
 
-# the predictions must be in the same format where each symbol is followed by a space
-predictions = ["$ \cos ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 } } } $  ",
-               "$ \sum _ { { T \leq g } } { 0 . 2 } $",
-               "$ x = R ( \theta ) $"]
+# # the predictions must be in the same format where each symbol is followed by a space
+# predictions = ["$ \cos ^ { 2 } \theta + \cos ^ { 2 } \theta = 1 } } } $  ",
+#                "$ \sum _ { { T \leq g } } { 0 . 2 } $",
+#                "$ x = R ( \theta ) $"]
 
 
-overall = 0
-for gt, pred in zip(grount_truths, predictions):
-    gt = gt.split()
-    pred = pred.split()
-    overall += BLEU.compute(pred,[gt], weights=[1/4, 1/4, 1/4, 1/4])
+# overall = 0
+# for gt, pred in zip(grount_truths, predictions):
+#     gt = gt.split()
+#     pred = pred.split()
+#     overall += BLEU.compute(pred,[gt], weights=[1/4, 1/4, 1/4, 1/4])
 
-print("Macro Bleu : ", overall/len(predictions))
+# print("Macro Bleu : ", overall/len(predictions))
 
 
 # In[ ]:
